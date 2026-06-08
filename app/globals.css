@@ -945,7 +945,6 @@ select option {
 
 .hero-copy {
   margin-left: 0;
-  padding-top: 0.5rem;
 }
 
 .hero-cinematic-grid {
@@ -954,8 +953,7 @@ select option {
 
 @media (min-width: 1024px) {
   .hero-copy {
-    margin-top: -3rem;
-    padding-top: 0;
+    transform: translateY(-1.25rem);
   }
 
   .hero-cinematic-inner {
@@ -968,7 +966,7 @@ select option {
   }
 
   .hero-clone-wrap {
-    align-self: center;
+    margin-top: 0;
     margin-left: 1.25rem;
     margin-right: -2rem;
     width: calc(100% + 2rem);

@@ -102,7 +102,7 @@ export default function Home() {
         <AmbientField />
 
         <div className="hero-cinematic-inner relative mx-auto w-full max-w-[1400px] pb-16 pt-28 md:pb-24 md:pt-32">
-          <div className="hero-cinematic-grid grid items-start lg:grid-cols-2">
+          <div className="hero-cinematic-grid grid items-center lg:grid-cols-2">
             <div className="hero-copy min-w-0">
               <motion.h1
                 custom={0}
