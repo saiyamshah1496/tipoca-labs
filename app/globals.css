@@ -32,49 +32,42 @@
   --display-sans: var(--font-inter);
   --sans: var(--font-inter);
 
-  --type-xs: 0.875rem;
-  --type-sm: 1.0625rem;
-  --type-base: 1.1875rem;
-  --type-lg: 1.3125rem;
-  --type-xl: 1.5rem;
-  --type-2xl: 1.875rem;
+  --type-xs: 0.75rem;
+  --type-sm: 0.875rem;
+  --type-base: 1rem;
+  --type-lg: 1.125rem;
+  --type-xl: 1.25rem;
+  --type-2xl: 1.5rem;
 }
 
 @theme inline {
   --font-sans: var(--font-inter);
   --font-mono: var(--font-ibm-mono);
 
-  --text-xs: 0.875rem;
+  --text-xs: 0.75rem;
   --text-xs--line-height: 1.5;
-  --text-sm: 1.0625rem;
+  --text-sm: 0.875rem;
   --text-sm--line-height: 1.55;
-  --text-base: 1.1875rem;
+  --text-base: 1rem;
   --text-base--line-height: 1.6;
-  --text-lg: 1.3125rem;
+  --text-lg: 1.125rem;
   --text-lg--line-height: 1.55;
-  --text-xl: 1.5rem;
+  --text-xl: 1.25rem;
   --text-xl--line-height: 1.45;
-  --text-2xl: 1.875rem;
+  --text-2xl: 1.5rem;
   --text-2xl--line-height: 1.35;
-  --text-3xl: 2.375rem;
+  --text-3xl: 1.875rem;
   --text-3xl--line-height: 1.2;
-  --text-4xl: 3rem;
+  --text-4xl: 2.25rem;
   --text-4xl--line-height: 1.12;
-  --text-5xl: 3.75rem;
+  --text-5xl: 3rem;
   --text-5xl--line-height: 1.08;
-  --text-6xl: 4.5rem;
+  --text-6xl: 3.75rem;
   --text-6xl--line-height: 1.05;
 }
 
 html {
   scroll-behavior: smooth;
-  font-size: 112.5%;
-}
-
-@media (min-width: 1024px) {
-  html {
-    font-size: 118.75%;
-  }
 }
 
 body {
@@ -284,12 +277,12 @@ body {
 }
 
 .hero-title {
-  font-size: clamp(2.875rem, 5.2vw, 4.5rem);
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
   line-height: 1.04;
 }
 
 .section-title {
-  font-size: clamp(2.5rem, 4.2vw, 3.75rem);
+  font-size: clamp(1.875rem, 3.5vw, 3rem);
   line-height: 1.06;
 }
 
@@ -392,8 +385,8 @@ body {
 .eyebrow-teal { color: var(--teal); }
 
 .hero-deck {
-  max-width: 44rem;
-  font-size: clamp(1.25rem, 1.55vw, 1.4375rem);
+  max-width: 40rem;
+  font-size: clamp(1.0625rem, 1.15vw, 1.1875rem);
   font-weight: 400;
   line-height: 1.6;
   letter-spacing: -0.01em;
@@ -906,7 +899,7 @@ select option {
 
 .stat-card-value {
   font-family: var(--display);
-  font-size: 2.125rem;
+  font-size: 1.75rem;
   font-weight: 700;
   margin-top: 0.75rem;
   color: var(--red);
@@ -946,12 +939,12 @@ select option {
 .hero-cinematic-inner {
   margin-left: auto;
   margin-right: auto;
-  padding-left: 0.25rem;
+  padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
 
 .hero-copy {
-  margin-left: -0.75rem;
+  margin-left: 0;
 }
 
 .hero-cinematic-grid {
@@ -959,13 +952,9 @@ select option {
 }
 
 @media (min-width: 1024px) {
-  .hero-copy {
-    margin-left: -0.875rem;
-  }
-
   .hero-cinematic-inner {
-    padding-left: 0;
-    padding-right: 0.75rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .hero-cinematic-grid {
@@ -982,16 +971,12 @@ select option {
 
 @media (min-width: 1280px) {
   .hero-cinematic-inner {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .hero-cinematic-grid {
     gap: 4.5rem;
-  }
-
-  .hero-copy {
-    margin-left: -1rem;
   }
 
   .hero-clone-wrap {

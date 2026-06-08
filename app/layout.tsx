@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
@@ -24,6 +24,11 @@ export const metadata: Metadata = {
   title: "Tipoca Labs - Simulation Layer for CRM",
   description:
     "CI/CD for CRM campaigns. Living 1:1 twins, blast-radius simulation, and suppression lists back to Salesforce, Braze, and Iterable - before production sends.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
