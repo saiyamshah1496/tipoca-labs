@@ -98,23 +98,6 @@ export default function DroidCloneField({ active = false, suppressRatio = 0, var
             {active ? "Inferring on sample" : "1 user → 1 droid"}
           </span>
         </div>
-        {isHero && (
-          <div className="clone-army-hero-meta">
-            <span>
-              <strong>2.8M</strong> mirrored
-            </span>
-            <span className="clone-army-hero-meta-dot" aria-hidden>
-              ·
-            </span>
-            <span className={active ? "text-[var(--green)]" : "text-[var(--blue)]"}>
-              {active ? "Inferring" : "Online"}
-            </span>
-            <span className="clone-army-hero-meta-dot" aria-hidden>
-              ·
-            </span>
-            <span>Last sync · 5m ago</span>
-          </div>
-        )}
       </div>
 
       <div

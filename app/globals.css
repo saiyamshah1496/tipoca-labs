@@ -425,6 +425,19 @@ body {
   display: inline-block;
 }
 
+/* Cycling word wrapper — period is inside so it always hugs the word */
+.hero-cycling-wrap {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.hero-cycling-word {
+  display: inline-block;
+  padding-bottom: 0.06em;
+  will-change: transform, opacity, filter;
+}
+
 @keyframes shimmer {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }

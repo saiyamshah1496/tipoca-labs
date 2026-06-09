@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import { motion } from "framer-motion";
+import { useState, useCallback, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, X } from "lucide-react";
 import type { Phase, SimResult } from "@/components/CampaignSimulator";
 import Logo from "@/components/Logo";
@@ -16,6 +16,48 @@ import IntegrationsSection from "@/components/IntegrationsSection";
 import SectionBlock from "@/components/SectionBlock";
 import RealityStats from "@/components/RealityStats";
 import { revealRight, revealUp } from "@/lib/motion";
+
+const CYCLING_WORDS = [
+  { text: "CRM", color: "var(--blue)" },
+  { text: "lifecycle marketing", color: "var(--violet)" },
+  { text: "margin protection", color: "var(--green)" },
+  { text: "AI decisioning", color: "var(--red)" },
+] as const;
+
+function CyclingWord() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % CYCLING_WORDS.length);
+    }, 2200);
+    return () => clearInterval(id);
+  }, []);
+
+  const word = CYCLING_WORDS[index];
+
+  return (
+    <span
+      className="hero-cycling-wrap"
+      aria-label={word.text}
+      aria-live="polite"
+    >
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={index}
+          className="hero-cycling-word"
+          style={{ color: word.color }}
+          initial={{ opacity: 0, y: 28, filter: "blur(4px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
+          transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {word.text}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
 
 const USE_CASES = [
   {
@@ -111,8 +153,9 @@ export default function Home() {
                 animate="show"
                 className="headline-serif hero-title"
               >
-                The simulation layer for{" "}
-                <span className="hero-accent">CRM</span>.
+                The simulation layer for
+                <br />
+                <CyclingWord />
               </motion.h1>
 
               <motion.p
@@ -145,15 +188,6 @@ export default function Home() {
                 </a>
               </motion.div>
 
-              <motion.p
-                custom={0.48}
-                variants={revealUp}
-                initial="hidden"
-                animate="show"
-                className="mt-6 caption-mono text-[var(--text-tertiary)]"
-              >
-                ↳ Drag the clone field · hover a droid · adjust sample N
-              </motion.p>
             </div>
 
             <motion.div
