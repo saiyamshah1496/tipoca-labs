@@ -2,63 +2,22 @@
 
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { Ban, ListX, Shield, Tags, Timer } from "lucide-react";
+import { ListX, Shield, Timer, Ban } from "lucide-react";
 import { BrandChip, type BrandId } from "@/components/IntegrationLogos";
+import { COMING_SOON_INTEGRATIONS, DISPATCH_OUTPUTS, PROFILE_DIMENSIONS } from "@/lib/product";
 
-const INPUT_GROUPS: { title: string; desc: string; brands: readonly BrandId[] }[] = [
-  {
-    title: "Commerce & transactional",
-    desc: "Value profile · LTV, returns, discount usage",
-    brands: ["shopify", "bigcommerce", "stripe", "woocommerce"],
-  },
-  {
-    title: "Marketing automation",
-    desc: "Fatigue profile · send volume, opens, unsubs",
-    brands: ["braze", "klaviyo", "iterable", "hubspot"],
-  },
-  {
-    title: "Behavioral data",
-    desc: "Intent profile · sessions, cart, category views",
-    brands: ["segment", "rudderstack", "mixpanel", "amplitude"],
-  },
-  {
-    title: "Customer support",
-    desc: "Sentiment profile · tickets, CSAT, severity",
-    brands: ["zendesk", "gorgias", "intercom"],
-  },
-];
+const INPUT_GROUPS = PROFILE_DIMENSIONS.map((dim) => ({
+  title: dim.name,
+  desc: `${dim.profile} · ${dim.signals.slice(0, 3).join(", ")}`,
+  brands: dim.integrations.map((i) => i.id as BrandId),
+}));
 
-const OUTPUTS: {
-  label: string;
-  desc: string;
-  icon: ReactNode;
-  destinations: readonly BrandId[];
-}[] = [
-  {
-    label: "Suppression lists",
-    desc: "Exclude organic converters",
-    icon: <ListX className="h-4 w-4 text-[var(--red)]" />,
-    destinations: ["salesforce", "braze", "iterable"],
-  },
-  {
-    label: "Tag & cohort updates",
-    desc: "Fatigue · whale · exploit flags",
-    icon: <Tags className="h-4 w-4 text-[var(--blue)]" />,
-    destinations: ["salesforce", "hubspot"],
-  },
-  {
-    label: "Throttle rules",
-    desc: "Journey holds & send caps",
-    icon: <Timer className="h-4 w-4 text-[var(--blue)]" />,
-    destinations: ["braze", "iterable", "adobe"],
-  },
-  {
-    label: "Hard blocks",
-    desc: "HTTP 406 · schema violations",
-    icon: <Ban className="h-4 w-4 text-[var(--red)]" />,
-    destinations: ["agentforce", "salesforce"],
-  },
-];
+const OUTPUT_ICONS: Record<string, ReactNode> = {
+  "Suppression lists": <ListX className="h-4 w-4 text-[var(--red)]" />,
+  "Dispatch gate": <Shield className="h-4 w-4 text-[var(--indigo)]" />,
+  "Exposure guardrails": <Timer className="h-4 w-4 text-[var(--teal)]" />,
+  "Preflight blocks": <Ban className="h-4 w-4 text-[var(--red)]" />,
+};
 
 function FlowCard({
   title,
@@ -77,13 +36,7 @@ function FlowCard({
 
   return (
     <div className="integrations-flow-card flex h-full min-h-[88px] flex-col justify-center px-4 py-3.5">
-      <div
-        className={
-          centered
-            ? "flex flex-col items-center gap-2 text-center"
-            : "flex items-start gap-2"
-        }
-      >
+      <div className={centered ? "flex flex-col items-center gap-2 text-center" : "flex items-start gap-2"}>
         {icon && (
           <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[var(--surface)]/60">
             {icon}
@@ -103,24 +56,24 @@ function FlowCard({
   );
 }
 
-function TipocaHub({ compact }: { compact?: boolean }) {
+function HoldoutHub({ compact }: { compact?: boolean }) {
   return (
     <div className={`integrations-hub ${compact ? "w-full" : ""}`}>
       <div className="integrations-hub-head">
-        <svg width="28" height="28" viewBox="0 0 26 26" fill="none" className="mx-auto" aria-hidden>
-          <path d="M2 13h9" stroke="var(--red)" strokeWidth="1.2" strokeLinecap="round" opacity="0.7" />
-          <path d="M15 13h9" stroke="var(--blue)" strokeWidth="1.2" strokeLinecap="round" />
-          <rect x="10.5" y="8.5" width="5" height="9" rx="0.5" fill="var(--bg)" stroke="var(--border-strong)" />
-          <circle cx="13" cy="13" r="1.5" fill="var(--blue)" />
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" className="mx-auto" aria-hidden>
+          <rect x="7" y="7" width="5" height="18" rx="2.5" fill="var(--indigo)" />
+          <rect x="20" y="7" width="5" height="18" rx="2.5" fill="var(--indigo)" />
+          <rect x="12" y="13.5" width="3.6" height="4" rx="2" fill="var(--indigo)" />
+          <rect x="16.4" y="13.5" width="3.6" height="4" rx="2" fill="var(--indigo)" />
         </svg>
-        <p className="headline mt-1.5 text-base text-[var(--blue)]">Tipoca</p>
-        <p className="label-mono text-[var(--text-tertiary)]">Inference engine</p>
+        <p className="mt-1.5 text-base font-semibold text-[var(--indigo)]">Holdout</p>
+        <p className="label-mono text-[var(--text-tertiary)]">Governance layer</p>
       </div>
       <div className="integrations-hub-layers">
         {[
-          { step: "Mirror", tech: "pgvector · 1:1 twins", accent: "text-[var(--blue)]" },
-          { step: "Sandbox", tech: "K-means · counterfactual", accent: "text-[var(--violet)]" },
-          { step: "Guardrails", tech: "DSPy · suppress API", accent: "text-[var(--green)]" },
+          { step: "Ingest", tech: "8 live connectors", accent: "text-[var(--indigo)]" },
+          { step: "Simulate", tech: "Cohort + agentic fit", accent: "text-[var(--violet)]" },
+          { step: "Govern", tech: "Suppress · gate · block", accent: "text-[var(--green)]" },
         ].map((layer) => (
           <div key={layer.step} className="integrations-hub-layer">
             <p className={`text-sm font-semibold ${layer.accent}`}>{layer.step}</p>
@@ -130,7 +83,7 @@ function TipocaHub({ compact }: { compact?: boolean }) {
       </div>
       {!compact && (
         <p className="integrations-hub-foot label-mono text-[var(--text-tertiary)]">
-          Not a system of record
+          Reads your stack · not a system of record
         </p>
       )}
     </div>
@@ -138,20 +91,26 @@ function TipocaHub({ compact }: { compact?: boolean }) {
 }
 
 export default function IntegrationsSection() {
+  const outputs = DISPATCH_OUTPUTS.map((out) => ({
+    ...out,
+    icon: OUTPUT_ICONS[out.label],
+    destinations: out.destinations as readonly BrandId[],
+  }));
+
   return (
     <div className="integrations-flow">
       <div className="integrations-flow-desktop hidden lg:block">
         <div className="integrations-flow-grid">
-          <p className="integrations-flow-label integrations-flow-label-in">Inputs</p>
+          <p className="integrations-flow-label integrations-flow-label-in">Signal sources</p>
           <span aria-hidden />
-          <p className="integrations-flow-label integrations-flow-label-out">Outputs</p>
+          <p className="integrations-flow-label integrations-flow-label-out">Governance outputs</p>
 
           <div className="integrations-flow-hub-slot">
-            <TipocaHub />
+            <HoldoutHub />
           </div>
 
           {INPUT_GROUPS.map((group, i) => {
-            const out = OUTPUTS[i];
+            const out = outputs[i];
             const row = i + 2;
 
             return (
@@ -193,7 +152,7 @@ export default function IntegrationsSection() {
 
       <div className="integrations-flow-mobile space-y-8 lg:hidden">
         <div>
-          <p className="integrations-flow-label integrations-flow-label-in mb-3">Inputs</p>
+          <p className="integrations-flow-label integrations-flow-label-in mb-3">Signal sources</p>
           <div className="space-y-3">
             {INPUT_GROUPS.map((group) => (
               <FlowCard key={group.title} title={group.title} desc={group.desc} brands={group.brands} />
@@ -201,12 +160,12 @@ export default function IntegrationsSection() {
           </div>
         </div>
 
-        <TipocaHub compact />
+        <HoldoutHub compact />
 
         <div>
-          <p className="integrations-flow-label integrations-flow-label-out mb-3">Outputs</p>
+          <p className="integrations-flow-label integrations-flow-label-out mb-3">Governance outputs</p>
           <div className="space-y-3">
-            {OUTPUTS.map((out) => (
+            {outputs.map((out) => (
               <FlowCard
                 key={out.label}
                 title={out.label}
@@ -220,14 +179,17 @@ export default function IntegrationsSection() {
         </div>
       </div>
 
-      <div className="integrations-flow-foot">
+      <div className="integrations-flow-foot space-y-3">
         <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
           <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
-            <Shield className="h-3.5 w-3.5 shrink-0 text-[var(--blue)]" />
-            Read-only ingest from your existing tools
+            <Shield className="h-3.5 w-3.5 shrink-0 text-[var(--indigo)]" />
+            Read-only ingest · isolated per workspace
           </div>
-          <p className="label-mono text-[var(--text-tertiary)]">CRM & data · Tipoca · Send layer</p>
+          <p className="label-mono text-[var(--text-tertiary)]">8 live connectors · CEP dispatch (Braze & Klaviyo)</p>
         </div>
+        <p className="text-center text-sm text-[var(--text-tertiary)]">
+          Expanding to {COMING_SOON_INTEGRATIONS.join(", ")}, and more.
+        </p>
       </div>
     </div>
   );

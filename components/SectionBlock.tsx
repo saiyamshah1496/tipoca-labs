@@ -6,8 +6,6 @@ import { revealUp } from "@/lib/motion";
 
 interface SectionBlockProps {
   id?: string;
-  index?: string;
-  tag?: string;
   eyebrow?: string;
   eyebrowTone?: "blue" | "red" | "green" | "violet" | "teal";
   title: string;
@@ -18,14 +16,10 @@ interface SectionBlockProps {
   align?: "left" | "center";
   className?: string;
   viewport?: boolean;
-  ghost?: string;
-  flip?: boolean;
 }
 
 export default function SectionBlock({
   id,
-  index,
-  tag,
   eyebrow,
   eyebrowTone = "blue",
   title,
@@ -36,8 +30,6 @@ export default function SectionBlock({
   align = "left",
   className = "",
   viewport = false,
-  ghost,
-  flip = false,
 }: SectionBlockProps) {
   const centered = align === "center";
   const toneClass =
@@ -58,27 +50,8 @@ export default function SectionBlock({
     >
       {backdrop}
 
-      {ghost && (
-        <span className={`section-ghost ${flip ? "right-6 top-16" : "left-6 top-16"}`} aria-hidden>
-          {ghost}
-        </span>
-      )}
-
       <div className={`relative z-[1] mx-auto max-w-[1400px] px-6 ${centered ? "text-center" : ""}`}>
-        {index && tag && (
-          <motion.p
-            custom={0}
-            variants={revealUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            className={`section-index mb-8 ${centered ? "mx-auto max-w-fit" : ""}`}
-          >
-            {index} // {tag}
-          </motion.p>
-        )}
-
-        {!index && eyebrow && (
+        {eyebrow && (
           <motion.p
             custom={0}
             variants={revealUp}
@@ -118,7 +91,7 @@ export default function SectionBlock({
             whileInView="show"
             viewport={{ once: true, margin: "-80px" }}
             className={`section-desc mt-6 ${
-              centered ? "mx-auto max-w-4xl" : flip ? "ml-auto max-w-5xl text-right" : "max-w-4xl"
+              centered ? "mx-auto max-w-4xl" : "max-w-4xl"
             }`}
           >
             {description}

@@ -8,7 +8,7 @@ const LAYERS = [
     step: "01",
     title: "Continuous memory & embedding",
     tech: "Segment · Kafka · SLM · pgvector",
-    body: "Event streams and CRM snapshots flow in continuously. SLMs translate clickstream into semantic state blocks, embedded and stored as millions of continuously updated twins. Tipoca is not your system of record.",
+    body: "Event streams and CRM snapshots flow in continuously. Audience profiles are built from commerce, engagement, and support signals - Holdout reads your stack, it doesn't replace it.",
     color: "var(--blue)",
   },
   {

@@ -1,17 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #f2f5fa;
+  --bg: #fafafa;
   --surface: #ffffff;
-  --surface-dim: #e9edf4;
+  --surface-dim: #f4f4f5;
   --surface-elevated: #ffffff;
-  --border: rgba(10, 20, 40, 0.09);
-  --border-strong: rgba(10, 20, 40, 0.16);
-  --text: #0a0f18;
-  --text-secondary: #3d4a63;
-  --text-tertiary: #5c6b84;
-  --text-muted: #8490a8;
-  --blue: #1a4fff;
+  --border: rgba(15, 23, 42, 0.08);
+  --border-strong: rgba(15, 23, 42, 0.14);
+  --text: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --text-muted: #94a3b8;
+  --indigo: #4f46e5;
+  --indigo-soft: rgba(79, 70, 229, 0.08);
+  --indigo-glow: rgba(79, 70, 229, 0.25);
+  --blue: #4f46e5;
   --blue-soft: rgba(26, 79, 255, 0.09);
   --blue-glow: rgba(26, 79, 255, 0.28);
   --blue-mid: #3d6dff;
@@ -27,8 +30,8 @@
   --red-soft: rgba(225, 29, 72, 0.09);
   --green: #059669;
   --green-soft: rgba(5, 150, 105, 0.09);
-  --mono: var(--font-ibm-mono);
-  --display: var(--font-instrument);
+  --mono: var(--font-inter);
+  --display: var(--font-inter);
   --display-sans: var(--font-inter);
   --sans: var(--font-inter);
 
@@ -425,7 +428,7 @@ body {
   display: inline-block;
 }
 
-/* Cycling word wrapper — period is inside so it always hugs the word */
+/* Cycling word wrapper - period is inside so it always hugs the word */
 .hero-cycling-wrap {
   display: inline-flex;
   align-items: baseline;
@@ -816,21 +819,31 @@ body {
   }
 }
 
-.section-cta {
-  background: linear-gradient(135deg, #1240d9 0%, #1a4fff 45%, #3d6dff 100%);
-  color: white;
+.eyebrow-indigo { color: var(--indigo); }
+
+.hero-enterprise {
+  min-height: auto;
+}
+
+.product-hero-panel {
+  animation: panel-float 6s ease-in-out infinite;
+}
+
+@keyframes panel-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
 .btn-primary {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #1240d9 0%, var(--blue) 55%, var(--blue-mid) 100%);
+  background: linear-gradient(135deg, #4338ca 0%, var(--indigo) 55%, #6366f1 100%);
   color: #fff;
   font-family: var(--sans);
   font-weight: 600;
   font-size: var(--type-base);
   letter-spacing: 0.01em;
-  box-shadow: 0 2px 16px rgba(26, 79, 255, 0.32);
+  box-shadow: 0 2px 16px rgba(79, 70, 229, 0.28);
   transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
@@ -848,13 +861,18 @@ body {
 }
 
 .btn-primary:hover {
-  box-shadow: 0 6px 28px rgba(26, 79, 255, 0.42);
+  box-shadow: 0 6px 28px rgba(79, 70, 229, 0.38);
   transform: translateY(-2px);
+}
+
+.section-cta {
+  background: linear-gradient(135deg, #312e81 0%, #4f46e5 50%, #6366f1 100%);
+  color: white;
 }
 
 .section-cta .btn-primary {
   background: #fff;
-  color: var(--blue);
+  color: var(--indigo);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
 }
 

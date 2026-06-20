@@ -90,12 +90,12 @@ export default function DroidCloneField({ active = false, suppressRatio = 0, var
             {isHero && (
               <span className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--blue)] opacity-70" />
             )}
-            <p className={`label-mono ${isHero ? "text-[var(--text-tertiary)]" : "text-[var(--text-secondary)]"}`}>
-              {isHero ? "Clone mirror · live sample" : "1:1 clone army"}
+            <p className="label-mono text-[var(--text-tertiary)]">
+              {isHero ? "Agent mirror · sample cohort" : "1:1 agent army"}
             </p>
           </div>
           <span className={`clone-army-hero-status ${active ? "active" : ""}`}>
-            {active ? "Inferring on sample" : "1 user → 1 droid"}
+            {active ? "Inferring on sample" : "1 user → 1 agent"}
           </span>
         </div>
       </div>

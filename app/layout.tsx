@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
+import { Inter } from "next/font/google";
+import { SITE } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,22 +9,9 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument",
-  subsets: ["latin"],
-  weight: "400",
-});
-
-const ibmMono = IBM_Plex_Mono({
-  variable: "--font-ibm-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-});
-
 export const metadata: Metadata = {
-  title: "Tipoca Labs - Simulation Layer for CRM",
-  description:
-    "CI/CD for CRM campaigns. Living 1:1 twins, blast-radius simulation, and suppression lists back to Salesforce, Braze, and Iterable - before production sends.",
+  title: `${SITE.productName} - ${SITE.tagline}`,
+  description: SITE.description,
 };
 
 export const viewport: Viewport = {
@@ -37,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${instrumentSerif.variable} ${ibmMono.variable} h-full`}>
-      <body className="min-h-full">{children}</body>
+    <html lang="en" className={`${inter.variable} h-full`}>
+      <body className="min-h-full antialiased">{children}</body>
     </html>
   );
 }

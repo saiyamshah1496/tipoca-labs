@@ -16,7 +16,7 @@ export default function InferenceTopology({ active = false }: InferenceTopologyP
     <div className="topology-panel overflow-hidden rounded-sm">
       <div className="flex items-center justify-between border-b border-[var(--border)] px-4 py-3 md:px-5">
         <p className="label-mono text-[var(--text-tertiary)]">
-          User → clone mirror
+          User → agent mirror
         </p>
         <motion.span
           animate={{ opacity: active ? [0.5, 1, 0.5] : 0.75 }}
@@ -50,9 +50,9 @@ export default function InferenceTopology({ active = false }: InferenceTopologyP
             <div className="flex items-center gap-2 rounded-sm border border-[var(--blue)]/20 bg-[var(--blue-soft)] px-3 py-2">
               <MiniDroid active={active} delay={i} />
               <div>
-                <p className="text-base font-medium">Clone</p>
+                <p className="text-base font-medium">Agent</p>
                 <p className="caption-mono text-[var(--blue)]">
-                  clone_{user.userId.slice(4)}
+                  agent_{user.userId.slice(4)}
                 </p>
               </div>
             </div>

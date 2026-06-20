@@ -57,7 +57,7 @@ export default function StagingCrossSection() {
       </div>
 
       <p className="relative mt-8 text-center text-sm leading-relaxed text-[var(--text-secondary)]">
-        Tipoca sits between your CRM and your send layer - mirroring every user, simulating every campaign, pushing guardrails back upstream.
+        Holdout sits between your data stack and Braze or Klaviyo - building audience profiles, simulating every campaign, and pushing governance decisions back before send.
       </p>
     </div>
   );

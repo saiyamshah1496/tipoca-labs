@@ -7,6 +7,7 @@ const STATS = [
   { label: "A/B tests", value: "Reactive", warn: false },
   { label: "Dashboards", value: "Explain the past", warn: false },
   { label: "Focus groups", value: "Distort reality", warn: false },
+  { label: "Predictive ML", value: "Segment averages", warn: false },
   { label: "Corrections", value: "Burn margin", warn: true },
 ];
 
