@@ -38,7 +38,11 @@ function HoldoutMark({ size = 28 }: { size?: number }) {
 
 export default function HoldoutLogo({ showTagline = false }: { showTagline?: boolean }) {
   return (
-    <div className="flex items-center gap-2.5">
+    <a
+      href="/"
+      className="flex items-center gap-2.5 rounded-md no-underline transition-opacity hover:opacity-80"
+      aria-label={`${SITE.productName} home`}
+    >
       <HoldoutMark size={28} />
       <div className="flex flex-col">
         <span className="text-lg font-semibold tracking-tight text-[var(--text)]">
@@ -50,6 +54,6 @@ export default function HoldoutLogo({ showTagline = false }: { showTagline?: boo
           </span>
         )}
       </div>
-    </div>
+    </a>
   );
 }
