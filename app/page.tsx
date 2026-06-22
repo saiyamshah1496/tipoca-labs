@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Check, X, ExternalLink } from "lucide-react";
+import { ArrowRight, Calendar, Check, X, ExternalLink } from "lucide-react";
 import HoldoutLogo from "@/components/HoldoutLogo";
 import ProductHeroPanel from "@/components/ProductHeroPanel";
 import DroidArmyBackdrop from "@/components/DroidArmyBackdrop";
@@ -10,7 +10,7 @@ import DecisionStackSection from "@/components/DecisionStackSection";
 import IntegrationsSection from "@/components/IntegrationsSection";
 import SectionBlock from "@/components/SectionBlock";
 import RealityStats from "@/components/RealityStats";
-import { APP_LOGIN_URL, APP_SIGNUP_URL, SITE } from "@/lib/site";
+import { APP_LOGIN_URL, APP_SIGNUP_URL, CONTACT, CONTACT_BOOKING_URL, HAS_CONTACT_BOOKING, SITE } from "@/lib/site";
 import { revealRight, revealUp } from "@/lib/motion";
 
 const USE_CASES = [
@@ -69,6 +69,9 @@ export default function Home() {
             <a href="#platform" className="nav-link">Agents</a>
             <a href="#how-it-works" className="nav-link">How it works</a>
             <a href="#integrations" className="nav-link">Integrations</a>
+            {HAS_CONTACT_BOOKING && (
+              <a href="#contact" className="nav-link">Contact</a>
+            )}
           </nav>
           <div className="flex items-center gap-2">
             <a
@@ -159,9 +162,17 @@ export default function Home() {
         eyebrow="The gap"
         title="Lifecycle marketing ships to millions"
         titleMuted="without a staging environment."
-        description="Every engineering team gets CI/CD. Marketers get production - campaigns, journeys, triggered messages, and AI-generated copy all go live without a sandbox. As creation gets cheaper, the bottleneck moves from drafting to governing what actually ships."
+        description={SITE.problemDescription}
         viewport
       >
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="panel-accent-violet panel-dark mx-auto mb-10 max-w-4xl rounded-md border border-[var(--violet)]/20 px-5 py-4 text-center text-base font-medium leading-relaxed text-[var(--text)] md:text-lg"
+        >
+          {SITE.problemAiLine}
+        </motion.p>
         <div className="problem-split grid w-full gap-10 lg:grid-cols-2 lg:items-start lg:gap-x-16">
           <RealityStats />
           <div className="grid w-full min-w-0 gap-3">
@@ -266,6 +277,57 @@ export default function Home() {
         </div>
       </SectionBlock>
 
+      {HAS_CONTACT_BOOKING && (
+      <SectionBlock
+        id="contact"
+        eyebrow="Contact"
+        eyebrowTone="teal"
+        title={CONTACT.headline}
+        titleMuted="before you ship."
+        description={CONTACT.subhead}
+        align="center"
+        className="section-tint-teal"
+      >
+        <div className="mx-auto grid max-w-2xl gap-4">
+          <motion.a
+            href={CONTACT_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="panel-dark panel-interactive panel-accent-teal group flex items-center gap-4 rounded-md p-5 text-left transition-colors"
+          >
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[var(--indigo)]/10 text-[var(--indigo)]">
+              <Calendar className="h-5 w-5" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-sm font-medium text-[var(--text-tertiary)]">
+                {CONTACT.bookingLabel}
+              </span>
+              <span className="mt-0.5 block text-lg font-semibold text-[var(--text)] group-hover:text-[var(--indigo)]">
+                {CONTACT.bookingDetail}
+              </span>
+              <span className="mt-1 block text-sm text-[var(--text-secondary)]">
+                {CONTACT.bookingNote}
+              </span>
+            </span>
+            <ArrowRight className="h-4 w-4 shrink-0 text-[var(--text-tertiary)] transition-transform group-hover:translate-x-0.5 group-hover:text-[var(--indigo)]" />
+          </motion.a>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-center text-sm text-[var(--text-tertiary)]"
+          >
+            {CONTACT.bookingHint}
+          </motion.p>
+        </div>
+      </SectionBlock>
+      )}
+
       <section className="section-cta relative z-10 py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6 text-center">
           <motion.div
@@ -294,6 +356,17 @@ export default function Home() {
               >
                 Sign in
               </a>
+              {HAS_CONTACT_BOOKING && (
+              <a
+                href={CONTACT_BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-md border border-white/25 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                <Calendar className="h-4 w-4" />
+                Book a call
+              </a>
+              )}
             </div>
           </motion.div>
         </div>
@@ -302,9 +375,21 @@ export default function Home() {
       <footer className="relative z-10 border-t border-[var(--border)] bg-[var(--surface)] py-8">
         <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-4 px-6 sm:flex-row">
           <HoldoutLogo showTagline />
-          <p className="text-sm text-[var(--text-tertiary)]">
-            {SITE.productName} · {SITE.tagline}
-          </p>
+          <div className="flex flex-col items-center gap-2 sm:items-end">
+            {HAS_CONTACT_BOOKING && (
+            <a
+              href={CONTACT_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--indigo)]"
+            >
+              Book a call
+            </a>
+            )}
+            <p className="text-sm text-[var(--text-tertiary)]">
+              {SITE.productName} · {SITE.tagline}
+            </p>
+          </div>
         </div>
       </footer>
     </main>
