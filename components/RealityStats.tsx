@@ -1,15 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { REALITY_STATS } from "@/lib/product";
 import { revealUp } from "@/lib/motion";
-
-const STATS = [
-  { label: "A/B tests", value: "Reactive", warn: false },
-  { label: "Dashboards", value: "Explain the past", warn: false },
-  { label: "Focus groups", value: "Distort reality", warn: false },
-  { label: "Predictive ML", value: "Segment averages", warn: false },
-  { label: "Corrections", value: "Burn margin", warn: true },
-];
 
 export default function RealityStats() {
   return (
@@ -21,7 +14,7 @@ export default function RealityStats() {
       viewport={{ once: true }}
       className="readout-table"
     >
-      {STATS.map((stat) => (
+      {REALITY_STATS.map((stat) => (
         <div key={stat.label} className="readout-row">
           <span className="readout-label">{stat.label}</span>
           <span className={stat.warn ? "readout-value readout-value-warn" : "readout-value"}>

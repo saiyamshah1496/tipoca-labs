@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Check, X, ExternalLink } from "lucide-react";
+import DifferentiationSection from "@/components/DifferentiationSection";
 import HoldoutLogo from "@/components/HoldoutLogo";
 import ProductHeroPanel from "@/components/ProductHeroPanel";
 import DroidArmyBackdrop from "@/components/DroidArmyBackdrop";
@@ -9,52 +10,9 @@ import ProfileDimensionsSection from "@/components/ProfileDimensionsSection";
 import DecisionStackSection from "@/components/DecisionStackSection";
 import IntegrationsSection from "@/components/IntegrationsSection";
 import SectionBlock from "@/components/SectionBlock";
-import RealityStats from "@/components/RealityStats";
-import { APP_LOGIN_URL, APP_SIGNUP_URL, CONTACT, CONTACT_BOOKING_URL, HAS_CONTACT_BOOKING, SITE } from "@/lib/site";
+import { APP_LOGIN_URL, APP_SIGNUP_URL, CONTACT, CONTACT_BOOKING_URL, HAS_CONTACT_BOOKING, NAV_LINKS, SITE } from "@/lib/site";
+import { PROBLEM_PAIN_POINTS, USE_CASES } from "@/lib/product";
 import { revealRight, revealUp } from "@/lib/motion";
-
-const USE_CASES = [
-  {
-    tag: "Lifecycle · Journeys",
-    metric: "−18%",
-    line: "Who is about to unsubscribe?",
-    detail:
-      "Before Braze Canvas or Klaviyo Flow goes live, Holdout simulates cross-channel cadence against fatigue profiles - throttling at-risk users before app deletions spike.",
-    accent: "panel-accent-red",
-    metricColor: "text-[var(--red)]",
-    tagColor: "text-[var(--red)]",
-  },
-  {
-    tag: "Commerce · Margin",
-    metric: "$847K",
-    line: "Who would have bought anyway?",
-    detail:
-      "A promo targets high-intent users. Holdout flags organic converters to suppress - so margin isn't wasted on customers who would purchase without the discount.",
-    accent: "panel-accent-blue",
-    metricColor: "text-[var(--indigo)]",
-    tagColor: "text-[var(--indigo)]",
-  },
-  {
-    tag: "Support · Sentiment",
-    metric: "0",
-    line: "Send promos to angry customers?",
-    detail:
-      "Open CRITICAL tickets and CSAT ≤ 2 are the strongest unsubscribe predictors. Holdout blocks or suppresses messaging to users in active disputes.",
-    accent: "panel-accent-violet",
-    metricColor: "text-[var(--violet)]",
-    tagColor: "text-[var(--violet)]",
-  },
-  {
-    tag: "Dispatch · Live gate",
-    metric: "100%",
-    line: "Govern every user at send?",
-    detail:
-      "Push holdout_gate_decision back to your CEP - allow or skip each user at dispatch, not just at campaign setup. Braze & Klaviyo today.",
-    accent: "panel-accent-green",
-    metricColor: "text-[var(--green)]",
-    tagColor: "text-[var(--green)]",
-  },
-];
 
 export default function Home() {
   return (
@@ -62,18 +20,23 @@ export default function Home() {
       <div className="site-backdrop pointer-events-none fixed inset-0 z-0" aria-hidden />
 
       <header className="header-glass sticky top-0 z-50">
-        <div className="mx-auto flex max-w-[1200px] items-center justify-between px-6 py-4">
-          <HoldoutLogo />
-          <nav className="hidden gap-8 nav-text md:flex">
-            <a href="#problem" className="nav-link">Problem</a>
-            <a href="#platform" className="nav-link">Agents</a>
-            <a href="#how-it-works" className="nav-link">How it works</a>
-            <a href="#integrations" className="nav-link">Integrations</a>
-            {HAS_CONTACT_BOOKING && (
-              <a href="#contact" className="nav-link">Contact</a>
-            )}
+        <div className="header-inner mx-auto max-w-[1280px] px-6 py-4 lg:px-8">
+          <div className="shrink-0">
+            <HoldoutLogo />
+          </div>
+
+          <nav className="header-nav hidden lg:flex" aria-label="Primary">
+            {NAV_LINKS.map((link) => {
+              if ("requiresBooking" in link && link.requiresBooking && !HAS_CONTACT_BOOKING) return null;
+              return (
+                <a key={link.href} href={link.href} className="nav-link">
+                  {link.label}
+                </a>
+              );
+            })}
           </nav>
-          <div className="flex items-center gap-2">
+
+          <div className="header-actions flex shrink-0 items-center gap-2">
             <a
               href={APP_LOGIN_URL}
               className="btn-ghost hidden items-center rounded-md px-4 py-2 sm:inline-flex"
@@ -103,7 +66,7 @@ export default function Home() {
                 animate="show"
                 className="eyebrow eyebrow-indigo"
               >
-                Agentic simulation & governance
+                Agentic governance, simulation & audit
               </motion.p>
 
               <motion.h1
@@ -163,24 +126,18 @@ export default function Home() {
         title="Lifecycle marketing ships to millions"
         titleMuted="without a staging environment."
         description={SITE.problemDescription}
-        viewport
       >
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="panel-accent-violet panel-dark mx-auto mb-10 max-w-4xl rounded-md border border-[var(--violet)]/20 px-5 py-4 text-center text-base font-medium leading-relaxed text-[var(--text)] md:text-lg"
-        >
-          {SITE.problemAiLine}
-        </motion.p>
-        <div className="problem-split grid w-full gap-10 lg:grid-cols-2 lg:items-start lg:gap-x-16">
-          <RealityStats />
-          <div className="grid w-full min-w-0 gap-3">
-            {[
-              "Launch a journey to 100K users. Hope fatigue doesn't spike unsubscribes.",
-              "Let AI draft the message. Pray it doesn't hallucinate a discount.",
-              "Discover churn from unsubscribe data - three weeks later.",
-            ].map((t, i) => (
+        <div className="mx-auto w-full max-w-2xl">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="panel-accent-violet panel-dark mb-10 rounded-md border border-[var(--violet)]/20 px-5 py-4 text-center text-base font-medium leading-relaxed text-[var(--text)] md:text-lg"
+          >
+            {SITE.problemAiLine}
+          </motion.p>
+          <div className="grid w-full gap-3">
+            {PROBLEM_PAIN_POINTS.map((t, i) => (
               <motion.div
                 key={t}
                 initial={{ opacity: 0, y: 16 }}
@@ -202,8 +159,7 @@ export default function Home() {
             >
               <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--green)]" />
               <span className="text-base text-[var(--text-secondary)]">
-                Simulate on audience profiles first - suppress at-risk users, push exclusions
-                to your CEP, and gate every user at dispatch before anything reaches production.
+                {SITE.problemSolution}
               </span>
             </motion.div>
           </div>
@@ -211,11 +167,23 @@ export default function Home() {
       </SectionBlock>
 
       <SectionBlock
+        id="differentiation"
+        eyebrow="Why Holdout"
+        title="Know before"
+        titleMuted="you send."
+        description={SITE.differentiationDescription}
+        align="center"
+        className="section-tint-warm"
+      >
+        <DifferentiationSection />
+      </SectionBlock>
+
+      <SectionBlock
         id="platform"
-        eyebrow="Digital agents"
+        eyebrow="Digital clones"
         title="Four signal dimensions."
-        titleMuted="One agent per user."
-        description="Commerce, engagement, behavioral, and support data hydrate a per-user agent - not a segment rollup - so simulation reflects how real customers would react to any message."
+        titleMuted="One clone per contact."
+        description={SITE.platformDescription}
         className="section-tint-blue section-twins"
         backdrop={<DroidArmyBackdrop />}
       >
@@ -227,7 +195,7 @@ export default function Home() {
         eyebrow="Decision stack"
         title="Governance for the"
         titleMuted="AI creation era."
-        description="When every team can generate campaigns, journeys, and copy at scale, the bottleneck moves from creation to judgment. Holdout is the agentic layer that simulates human reaction and gates every send - before and at dispatch."
+        description={SITE.howItWorksDescription}
         align="center"
         className="section-tint-violet"
       >
@@ -239,7 +207,7 @@ export default function Home() {
         eyebrow="Integrations"
         title="Plugs into your stack."
         titleMuted="Pushes governance back."
-        description="Eight live connectors today across commerce, engagement, behavioral, and support - with CEP dispatch via Braze and Klaviyo. More platforms on the roadmap."
+        description={SITE.integrationsDescription}
         align="center"
         className="section-tint-teal"
       >
@@ -249,8 +217,9 @@ export default function Home() {
       <SectionBlock
         id="cases"
         eyebrow="Use cases"
-        title="Questions Holdout answers before anything ships."
-        description="Scenarios lifecycle teams run through before production - journey fatigue, margin protection, angry-customer suppression, and live dispatch governance."
+        title="Questions Holdout answers"
+        titleMuted="before and at send."
+        description={SITE.useCasesDescription}
         align="center"
         className="section-tint-warm"
       >
@@ -337,11 +306,10 @@ export default function Home() {
           >
             <p className="label-mono text-white/70">Open the workspace</p>
             <h2 className="mx-auto mt-4 max-w-3xl text-[clamp(1.75rem,3vw,2.5rem)] font-semibold leading-tight tracking-tight text-white">
-              Stop learning on live customers.
+              {SITE.ctaHeadline}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-white/75">
-              Connect your stack, simulate your next journey or campaign, and govern dispatch
-              - in a workspace built for lifecycle marketing teams.
+              {SITE.ctaSubhead}
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <a

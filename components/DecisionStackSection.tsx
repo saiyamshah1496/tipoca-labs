@@ -27,7 +27,7 @@ function StepVisual({ stepId, color }: { stepId: string; color: string }) {
           Agent receives message + context
         </p>
         <div className="relative mt-3 flex gap-2">
-          {["Worthy?", "Unsubscribe?", "Ignore?"].map((q) => (
+          {["RESPONSE", "IGNORE", "UNSUBSCRIBE", "SUPPRESSED"].map((q) => (
             <span
               key={q}
               className="rounded-full border border-[var(--violet)]/25 bg-white/80 px-2.5 py-1 text-[10px] font-medium text-[var(--violet)]"

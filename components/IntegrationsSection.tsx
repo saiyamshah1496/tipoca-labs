@@ -185,7 +185,7 @@ export default function IntegrationsSection() {
             <Shield className="h-3.5 w-3.5 shrink-0 text-[var(--indigo)]" />
             Read-only ingest · isolated per workspace
           </div>
-          <p className="label-mono text-[var(--text-tertiary)]">8 live connectors · CEP dispatch (Braze & Klaviyo)</p>
+          <p className="label-mono text-[var(--text-tertiary)]">8 providers · 12 Nango syncs · CEP dispatch write-back</p>
         </div>
         <p className="text-center text-sm text-[var(--text-tertiary)]">
           Expanding to {COMING_SOON_INTEGRATIONS.join(", ")}, and more.

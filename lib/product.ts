@@ -12,15 +12,12 @@ export interface PipelineStep {
   id: string;
   label: string;
   title: string;
-  /** Punchy line for the AI-era buyer */
   headline: string;
   detail: string;
-  /** What the team gets - outcome-oriented */
   outcome: string;
   tech: string;
   color: string;
   icon: LucideIcon;
-  /** Highlight as the agentic core step */
   featured?: boolean;
 }
 
@@ -29,23 +26,23 @@ export const GOVERNANCE_PIPELINE: PipelineStep[] = [
     id: "classify",
     label: "Classify",
     title: "Classify the message",
-    headline: "AI can draft a thousand variants overnight. Holdout knows what each one actually is.",
+    headline: "Nine campaign types. Six channels. One taxonomy for human and agent-generated copy.",
     detail:
-      "Every send is tagged by type and channel - promo, winback, abandonment, transactional, and more. Human-built or agent-generated, the same taxonomy applies.",
-    outcome: "One governance pipeline for campaigns, journeys, triggers, and autonomous drafts.",
-    tech: "Intent & channel taxonomy",
+      "Nine campaign types across six channels - promo, winback, abandonment, loyalty, and more. Same taxonomy for human and agent-generated copy.",
+    outcome: "The same governance pipeline for campaigns, journeys, triggers, and autonomous agent drafts.",
+    tech: "9 campaign types · 6 channels · proportionality profiles",
     color: "var(--indigo)",
     icon: Tags,
   },
   {
     id: "policy",
     label: "Policy",
-    title: "Policy preflight",
-    headline: "Catch the hallucinated 90% discount before it reaches a single inbox.",
+    title: "Integrity preflight",
+    headline: "Deterministic. No LLM. Runs before a single droid spins up.",
     detail:
-      "Deterministic integrity checks run before any agent inference - discount claims, spam patterns, compliance, and brand rules. Fast, explainable, no LLM required.",
-    outcome: "Hard blocks on copy that would never pass legal or brand review.",
-    tech: "Integrity guardrails",
+      "Hallucinated discounts, fake urgency, missing unsubscribe - hard-blocked in milliseconds. No LLM. Same preflight in simulation and dispatch.",
+    outcome: "Catch the 90% off everything before it reaches a single inbox.",
+    tech: "Integrity guardrails · CAN-SPAM · AI safety · instant block",
     color: "var(--red)",
     icon: Shield,
   },
@@ -53,23 +50,23 @@ export const GOVERNANCE_PIPELINE: PipelineStep[] = [
     id: "exposure",
     label: "Exposure",
     title: "Exposure limits",
-    headline: "Fatigue isn't a segment problem. It's a per-person timing problem.",
+    headline: "AI agents lack intuition about we emailed them four times this week. We count the sends.",
     detail:
-      "Frequency caps, burst limits, spacing rules, and journey density from real send history - measured from Braze, Klaviyo, and your behavioral stack.",
-    outcome: "Stop the spam loop before unsubscribes show up in your dashboard.",
-    tech: "Exposure guardrails",
+      "Frequency caps, burst limits, and cognitive load from real CEP send history. Pre-suppress over-cap contacts before agents run.",
+    outcome: "Fatigue governance from measured exposure, not segment averages.",
+    tech: "Exposure guardrails · cognitive load preflight · cross-channel volume",
     color: "var(--teal)",
     icon: Radio,
   },
   {
     id: "fit",
     label: "Fit",
-    title: "Agentic fit judgment",
-    headline: "Don't predict clicks. Ask each user's agent whether the message is worth their attention.",
+    title: "Agentic worthiness",
+    headline: "Not will they click? Would a reasonable version of this person feel this message is justified?",
     detail:
-      "Every user gets an agent fed by commerce, fatigue, behavior, and support signals. It receives your message in full context - traits, timeline, relationship state - and judges worthiness like a person would.",
-    outcome: "Simulation that answers \"would Maria unsubscribe?\" not \"what's the expected CTR?\"",
-    tech: "Per-user agent inference",
+      "Each clone gets the full message in context - commerce, fatigue, behavior, support. Responds RESPONSE, IGNORE, UNSUBSCRIBE, or SUPPRESSED.",
+    outcome: "Simulation that answers would Maria unsubscribe? - not what's the expected CTR?",
+    tech: "Per-clone LLM role-play · episodic buffer · pgvector cohort sampling",
     color: "var(--violet)",
     icon: Bot,
     featured: true,
@@ -77,24 +74,24 @@ export const GOVERNANCE_PIPELINE: PipelineStep[] = [
   {
     id: "economics",
     label: "Economics",
-    title: "Economics check",
-    headline: "Margin protection when AI makes it trivial to discount everything.",
+    title: "Economics guardrail",
+    headline: "Know who would have bought anyway before you pay them to.",
     detail:
-      "Full-message economics review flags organic converters, promo exploiters, and discount spend that exceeds projected return - before the send burns margin.",
-    outcome: "Know who would have bought anyway before you pay them to.",
-    tech: "Economics guardrails",
+      "Flags organic converters and promo waste before send. Block when projected discount spend exceeds your risk budget.",
+    outcome: "Campaign-level ROI gate before send day, not a post-mortem dashboard.",
+    tech: "Economics guardrails · organic converter detection · GMV risk budget",
     color: "var(--amber)",
     icon: DollarSign,
   },
   {
     id: "verdict",
     label: "Verdict",
-    title: "Verdict & dispatch",
+    title: "Verdict & write-back",
     headline: "Simulate at cohort level. Govern at the individual. Ship with proof.",
     detail:
-      "Clear, block, or skip - every decision traceable to the step that fired. Push suppression lists pre-send, or write holdout_gate_decision back to your CEP at dispatch.",
-    outcome: "A staging environment for lifecycle marketing - finally.",
-    tech: "Suppress API · live dispatch gate",
+      "Pre-send: suppression lists to your CEP. At dispatch: holdout_gate_decision on profile. Braze and Klaviyo branch on allow vs skip.",
+    outcome: "Predicted vs. live CEP outcomes tracked per campaign. Every verdict in the audit log.",
+    tech: "holdout_gate_decision · suppression lists · audit trail · outcomes loop",
     color: "var(--green)",
     icon: CircleCheck,
   },
@@ -102,19 +99,19 @@ export const GOVERNANCE_PIPELINE: PipelineStep[] = [
 
 export const DECISION_STACK_CALLOUTS = [
   {
-    stat: "∞",
-    label: "AI-generated variants",
-    sub: "Creation is free. Sending isn't.",
+    stat: "2",
+    label: "Execution modes",
+    sub: "Predict cohort · apply per user.",
   },
   {
     stat: "1:1",
-    label: "Agent per user",
-    sub: "Not segment averages.",
+    label: "Clone per contact",
+    sub: "Not segment CTR averages.",
   },
   {
     stat: "6",
-    label: "Governance layers",
-    sub: "Before anything ships.",
+    label: "Pipeline layers",
+    sub: "Deterministic first, LLM where needed.",
   },
 ] as const;
 
@@ -123,7 +120,7 @@ export const PROFILE_DIMENSIONS = [
     id: "commerce",
     name: "Commerce",
     profile: "Commerce Profile",
-    description: "LTV, RFM, discount elasticity, and refund patterns",
+    description: "LTV, RFM, discount elasticity, and refund patterns from order and payment data",
     integrations: [
       { id: "shopify", name: "Shopify", live: true },
       { id: "stripe", name: "Stripe", live: true },
@@ -137,12 +134,12 @@ export const PROFILE_DIMENSIONS = [
     id: "fatigue",
     name: "Engagement & fatigue",
     profile: "Fatigue Profile",
-    description: "Send volume, cognitive load, opens, and unsubscribes",
+    description: "Send volume, cognitive load, and channel affinity - synced from your CEP",
     integrations: [
       { id: "braze", name: "Braze", live: true, cep: true },
       { id: "klaviyo", name: "Klaviyo", live: true, cep: true },
     ],
-    signals: ["Send volume", "Open rate", "Cognitive load", "Channel affinity"],
+    signals: ["Send volume", "Cognitive load", "Channel affinity", "Open rate"],
     accent: "text-orange-600",
     border: "border-orange-200",
     bg: "bg-orange-50",
@@ -151,12 +148,12 @@ export const PROFILE_DIMENSIONS = [
     id: "behavior",
     name: "Behavioral",
     profile: "Behavior Profile",
-    description: "Purchase intent, cart velocity, and session depth",
+    description: "Cart velocity, funnel drops, and category affinity from event streams",
     integrations: [
       { id: "segment", name: "Segment", live: true },
       { id: "amplitude", name: "Amplitude", live: true },
     ],
-    signals: ["Product views", "Cart velocity", "Funnel drops", "Retention"],
+    signals: ["Cart velocity", "Session depth", "Funnel drops", "Retention"],
     accent: "text-blue-600",
     border: "border-blue-200",
     bg: "bg-blue-50",
@@ -165,7 +162,7 @@ export const PROFILE_DIMENSIONS = [
     id: "sentiment",
     name: "Support & sentiment",
     profile: "Sentiment Profile",
-    description: "Open tickets, CSAT, and escalation severity",
+    description: "Open tickets, CSAT, escalation severity - complaint freeze before promos reach angry customers",
     integrations: [
       { id: "zendesk", name: "Zendesk", live: true },
       { id: "intercom", name: "Intercom", live: true },
@@ -188,22 +185,79 @@ export const COMING_SOON_INTEGRATIONS = [
 export const DISPATCH_OUTPUTS = [
   {
     label: "Suppression lists",
-    desc: "Pre-send exclusions pushed to your CEP",
+    desc: "Pre-send exclusions - Holdout Suppress (Klaviyo) · Holdout Exclusion (Braze)",
     destinations: ["braze", "klaviyo"] as const,
   },
   {
     label: "Dispatch gate",
-    desc: "Per-user allow / skip at send time in your CEP",
+    desc: "holdout_gate_decision + holdout_gate_reason on CEP profile at send time",
     destinations: ["braze", "klaviyo"] as const,
   },
   {
     label: "Exposure guardrails",
-    desc: "Throttle rules from burst & spacing limits",
+    desc: "Frequency caps, burst limits, cognitive load throttles from guardrails config",
     destinations: ["braze", "klaviyo"] as const,
   },
   {
     label: "Preflight blocks",
-    desc: "Policy failures before simulation runs",
+    desc: "Integrity failures before simulation or dispatch - HTTP 406 with reason code",
     destinations: ["braze", "klaviyo"] as const,
   },
+] as const;
+
+export const USE_CASES = [
+  {
+    tag: "Simulation · Journeys",
+    metric: "−18%",
+    line: "Who is about to unsubscribe?",
+    detail:
+      "Simulate Braze Canvas or Klaviyo Flow against fatigue profiles. Pre-suppress at-risk users with per-type blast radius thresholds.",
+    accent: "panel-accent-red",
+    metricColor: "text-[var(--red)]",
+    tagColor: "text-[var(--red)]",
+  },
+  {
+    tag: "Economics · Margin",
+    metric: "$847K",
+    line: "Who would have bought anyway?",
+    detail:
+      "Economics guardrail flags organic converters before the promo ships. Suppression list pushed to your CEP pre-send.",
+    accent: "panel-accent-blue",
+    metricColor: "text-[var(--indigo)]",
+    tagColor: "text-[var(--indigo)]",
+  },
+  {
+    tag: "Integrity · Complaint freeze",
+    metric: "0",
+    line: "Send promos to angry customers?",
+    detail:
+      "CRITICAL tickets or CSAT ≤ 2 - deterministic block before any agent runs. Same rule in simulation and dispatch.",
+    accent: "panel-accent-violet",
+    metricColor: "text-[var(--violet)]",
+    tagColor: "text-[var(--violet)]",
+  },
+  {
+    tag: "Dispatch · Live gate",
+    metric: "100%",
+    line: "Govern every user at send?",
+    detail:
+      "holdout_gate_decision on CEP profile. Braze Decision Split or Klaviyo conditional split branches on allow vs skip.",
+    accent: "panel-accent-green",
+    metricColor: "text-[var(--green)]",
+    tagColor: "text-[var(--green)]",
+  },
+] as const;
+
+export const PROBLEM_PAIN_POINTS = [
+  "Launch a Canvas to 100K users. Discover fatigue from unsubscribe data three weeks later.",
+  "Let an AI agent draft the message. Pray it doesn't hallucinate a 90% discount.",
+  "A/B test on live customers. Burn margin correcting what simulation would have caught.",
+] as const;
+
+export const REALITY_STATS = [
+  { label: "A/B tests", value: "Reactive · live customers", warn: false },
+  { label: "Predictive ML", value: "Segment CTR averages", warn: false },
+  { label: "Copy review", value: "Manual · pre-send only", warn: false },
+  { label: "ESP frequency caps", value: "Channel-blind", warn: false },
+  { label: "Holdout", value: "Per-clone · pre-send + dispatch", warn: true },
 ] as const;
