@@ -33,18 +33,19 @@ export const DIFFERENTIATION_COLUMNS: DifferentiationColumn[] = [
   {
     id: "holdout",
     label: "Holdout",
-    asks: "Is this the right message for this person right now?",
+    asks: "How would this person react to this message?",
     points: [
-      "Per-contact clone - commerce, fatigue, behavior, support",
+      "Agentic inference on each clone - commerce, fatigue, behavior, support",
       "Simulate on your CEP audience before anything ships",
-      "Same playbook at dispatch - traced verdict, full audit log",
+      "Same inference at dispatch - traced verdict, full audit log",
     ],
   },
 ];
 
 export const DIFFERENTIATION_ROWS = [
   { label: "Unit of decision", ml: "Segment", rl: "Policy", holdout: "Per contact" },
+  { label: "Inference", ml: "Propensity scores", rl: "Policy at send time", holdout: "Agentic clone inference" },
   { label: "Learns on", ml: "Historical logs", rl: "Live sends", holdout: "Staged simulation" },
-  { label: "Question", ml: "Who to target?", rl: "What maximizes reward?", holdout: "Right message now?" },
+  { label: "Question", ml: "Who to target?", rl: "What maximizes reward?", holdout: "How would they react?" },
   { label: "Explainability", ml: "Feature weights", rl: "Learned policy", holdout: "Pipeline + audit" },
 ] as const;

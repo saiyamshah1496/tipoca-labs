@@ -66,7 +66,7 @@ export const GOVERNANCE_PIPELINE: PipelineStep[] = [
     detail:
       "Each clone gets the full message in context - commerce, fatigue, behavior, support. Responds RESPONSE, IGNORE, UNSUBSCRIBE, or SUPPRESSED.",
     outcome: "Simulation that answers would Maria unsubscribe? - not what's the expected CTR?",
-    tech: "Per-clone LLM role-play · episodic buffer · pgvector cohort sampling",
+    tech: "Per-clone agentic inference · episodic buffer · pgvector cohort sampling",
     color: "var(--violet)",
     icon: Bot,
     featured: true,
@@ -248,11 +248,28 @@ export const USE_CASES = [
   },
 ] as const;
 
-export const PROBLEM_PAIN_POINTS = [
-  "Launch a Canvas to 100K users. Discover fatigue from unsubscribe data three weeks later.",
-  "Let an AI agent draft the message. Pray it doesn't hallucinate a 90% discount.",
-  "A/B test on live customers. Burn margin correcting what simulation would have caught.",
+export const PROBLEM_SCENARIOS = [
+  {
+    tag: "Journey launch",
+    detail: "Launch a Canvas to 100K users. Discover fatigue from unsubscribe data three weeks later.",
+  },
+  {
+    tag: "AI-generated copy",
+    detail: "Let an AI agent draft the message. Pray it doesn't hallucinate a 90% discount.",
+  },
+  {
+    tag: "Live experimentation",
+    detail: "A/B test on live customers. Burn margin correcting what simulation would have caught.",
+  },
 ] as const;
+
+export const PROBLEM_SOLUTION_STEPS = [
+  "Simulate pre-send on your audience",
+  "Ship with human intervention",
+  "Log every step",
+] as const;
+
+export const PROBLEM_PAIN_POINTS = PROBLEM_SCENARIOS.map((s) => s.detail);
 
 export const REALITY_STATS = [
   { label: "A/B tests", value: "Reactive · live customers", warn: false },

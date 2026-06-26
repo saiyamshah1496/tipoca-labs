@@ -12,16 +12,12 @@ export const SITE = {
     "Engineering has CI/CD. Marketers ship campaigns, journeys, and AI-generated copy straight to users - no staging, no per-user gate.",
   problemAiLine:
     "When teams can generate 1,000 variants overnight, the bottleneck isn't drafting - it's knowing what should never ship.",
-  problemSolution:
-    "Simulate on your CEP audience pre-send. Apply ALLOW/SKIP at dispatch. Every step logged.",
   differentiationDescription:
     "Simulate on real contacts. Ship what you've already seen.",
   platformDescription:
     "One digital clone per contact - commerce, fatigue, behavior, and support profiles hydrated from your stack. Not segment rollups.",
   howItWorksDescription:
     "Classify and preflight deterministically. Run agentic judgment only where needed. Same config for simulation and dispatch.",
-  integrationsDescription:
-    "Eight connectors in via Nango. Suppression lists and holdout_gate_decision out to Braze and Klaviyo at dispatch.",
   useCasesDescription:
     "Journey fatigue, margin protection, complaint freeze, and live dispatch gating - the scenarios teams run before production.",
   ctaHeadline: "Stop learning on live customers.",

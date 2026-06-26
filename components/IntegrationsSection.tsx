@@ -180,14 +180,11 @@ export default function IntegrationsSection() {
       </div>
 
       <div className="integrations-flow-foot space-y-3">
-        <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
-          <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
-            <Shield className="h-3.5 w-3.5 shrink-0 text-[var(--indigo)]" />
-            Read-only ingest · isolated per workspace
-          </div>
-          <p className="label-mono text-[var(--text-tertiary)]">8 providers · 12 Nango syncs · CEP dispatch write-back</p>
+        <div className="flex items-center justify-center gap-2 text-sm text-[var(--text-secondary)] sm:justify-start">
+          <Shield className="h-3.5 w-3.5 shrink-0 text-[var(--indigo)]" />
+          Read-only ingest · isolated per workspace
         </div>
-        <p className="text-center text-sm text-[var(--text-tertiary)]">
+        <p className="text-center text-sm text-[var(--text-tertiary)] sm:text-left">
           Expanding to {COMING_SOON_INTEGRATIONS.join(", ")}, and more.
         </p>
       </div>

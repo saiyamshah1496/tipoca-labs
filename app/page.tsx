@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, Check, X, ExternalLink } from "lucide-react";
+import { ArrowRight, Calendar, ExternalLink } from "lucide-react";
 import DifferentiationSection from "@/components/DifferentiationSection";
 import HoldoutLogo from "@/components/HoldoutLogo";
 import ProductHeroPanel from "@/components/ProductHeroPanel";
@@ -9,9 +9,10 @@ import DroidArmyBackdrop from "@/components/DroidArmyBackdrop";
 import ProfileDimensionsSection from "@/components/ProfileDimensionsSection";
 import DecisionStackSection from "@/components/DecisionStackSection";
 import IntegrationsSection from "@/components/IntegrationsSection";
+import ProblemSection from "@/components/ProblemSection";
 import SectionBlock from "@/components/SectionBlock";
 import { APP_LOGIN_URL, APP_SIGNUP_URL, CONTACT, CONTACT_BOOKING_URL, HAS_CONTACT_BOOKING, NAV_LINKS, SITE } from "@/lib/site";
-import { PROBLEM_PAIN_POINTS, USE_CASES } from "@/lib/product";
+import { USE_CASES } from "@/lib/product";
 import { revealRight, revealUp } from "@/lib/motion";
 
 export default function Home() {
@@ -127,43 +128,7 @@ export default function Home() {
         titleMuted="without a staging environment."
         description={SITE.problemDescription}
       >
-        <div className="mx-auto w-full max-w-2xl">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="panel-accent-violet panel-dark mb-10 rounded-md border border-[var(--violet)]/20 px-5 py-4 text-center text-base font-medium leading-relaxed text-[var(--text)] md:text-lg"
-          >
-            {SITE.problemAiLine}
-          </motion.p>
-          <div className="grid w-full gap-3">
-            {PROBLEM_PAIN_POINTS.map((t, i) => (
-              <motion.div
-                key={t}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 + i * 0.06 }}
-                className="panel-accent-red panel-dark flex gap-3 rounded-md px-4 py-3"
-              >
-                <X className="mt-0.5 h-4 w-4 shrink-0 text-[var(--red)]" />
-                <span className="text-base text-[var(--text-secondary)]">{t}</span>
-              </motion.div>
-            ))}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.35 }}
-              className="panel-accent-green panel-dark flex gap-3 rounded-md border border-[var(--green)]/20 px-4 py-3"
-            >
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--green)]" />
-              <span className="text-base text-[var(--text-secondary)]">
-                {SITE.problemSolution}
-              </span>
-            </motion.div>
-          </div>
-        </div>
+        <ProblemSection />
       </SectionBlock>
 
       <SectionBlock
@@ -207,7 +172,6 @@ export default function Home() {
         eyebrow="Integrations"
         title="Plugs into your stack."
         titleMuted="Pushes governance back."
-        description={SITE.integrationsDescription}
         align="center"
         className="section-tint-teal"
       >
